@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/list', function(req, res, next) {
-  res.render('product_list');
+router.get('/', function(req, res, next) {
+  res.render('product/list');
 });
 
 router.get('/detial', function(req, res, next) {
-    res.render('product_detial');
+    res.render('product/detial');
   });
 
 module.exports = router;
