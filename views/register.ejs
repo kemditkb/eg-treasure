@@ -1,12 +1,4 @@
 <% layout('layout_treasure') %>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-  <script>
-    $(function () {
-      $("#inputDatepicker").datepicker({ dateFormat: 'yy/mm/dd', changeMonth: true, changeYear: true, yearRange: '1918:2018' });
-    });
-  </script>
   <section>
     <div class="container py-3">
       <h1>會員註冊</h1>
@@ -101,7 +93,14 @@
     </div>
   </section>
 
-  <script type="text/javascript" src="/javascripts/tw-city-selector.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tw-city-selector@1.0.12/tw-city-selector.min.js"></script>
+
   <script>
+    $(function () {
+      $("#inputDatepicker").datepicker({ dateFormat: 'yy/mm/dd', changeMonth: true, changeYear: true, yearRange: '1918:2018' });
+    });
     new TwCitySelector();
   </script>
