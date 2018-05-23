@@ -9,4 +9,12 @@ router.get('/privacy', function(req, res, next) {
   res.render('privacy');
 });
 
+router.get('/rules', function(req, res, next) {
+  res.render('rules');
+});
+
+router.get('/news', function(req, res, next) {
+  res.render('news');
+});
+
 module.exports = router;

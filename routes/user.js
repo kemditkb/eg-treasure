@@ -6,8 +6,7 @@ router.get('/login', function(req, res, next) {
 });
 
 router.post('/login', function(req, res, next) {
-    console.log(req.body.email);
-    console.log(req.body.password);
+    console.log(req.body);
     res.redirect('/');
 });
 
@@ -18,6 +17,19 @@ router.get('/register', function(req, res, next) {
 router.post('/register', function(req, res, next) {
   console.log(req.body);
   res.redirect('/');
+});
+
+router.get('/forgot', function(req, res, next) {
+  res.render('forgot');
+});
+
+router.post('/forgot', function(req, res, next) {
+  console.log(req.body);
+  res.redirect('/');
+});
+
+router.get('/level', function(req, res, next) {
+  res.render('level');
 });
 
 module.exports = router;
