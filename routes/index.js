@@ -17,4 +17,8 @@ router.get('/news', function(req, res, next) {
   res.render('news');
 });
 
+router.get('/faq', function(req, res, next) {
+  res.render('faq');
+});
+
 module.exports = router;
