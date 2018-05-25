@@ -4,6 +4,7 @@ var engine = require('ejs-locals');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var flash = require('connect-flash');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
@@ -23,10 +24,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-  secret: 'keyboard cat',
+  secret: 'eg treasure cat',
   resave: true,
   saveUninitialized: true
 }));
+app.use(flash());
 
 app.use('/', indexRouter);
 app.use('/user', userRouter);
