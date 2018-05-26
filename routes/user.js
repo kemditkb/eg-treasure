@@ -20,7 +20,6 @@ router.get('/signup', function (req, res, next) {
 });
 
 router.post('/signup', function (req, res, next) {
-  console.log(req.body);
   var newUser = req.body;
   fireAuth.createUserWithEmailAndPassword(newUser.email, newUser.password)
     .then(function (user) {
@@ -31,19 +30,25 @@ router.post('/signup', function (req, res, next) {
       return user.getIdToken();
     })
     .then(function(token) {
-      console.log(token);
       req.session.token = token;
       res.send({
         'success': true,
-        'message': ''
+        'message': '',
+        'redirect': '/user/verify'
       });
     })
     .catch(function (error) {
       res.send({ 
         'success': false,
-        'message': error.message
+        'message': error.message,
+        'redirect': null
       });
     })
+});
+
+router.get('/verify', function (req, res, next) {
+  console.log(req.session.token);
+  res.render('user/verify');
 });
 
 router.get('/forgot', function (req, res, next) {
