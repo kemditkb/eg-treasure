@@ -12,11 +12,11 @@
               </div>
               <div class="col-sm-5">
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="sex" id="male" value="Male" checked>
+                  <input class="form-check-input" type="radio" name="gender" id="male" value="male" checked>
                   <label class="form-check-label" for="inlineRadio1">先生</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="sex" id="female" value="Female">
+                  <input class="form-check-input" type="radio" name="gender" id="female" value="female">
                   <label class="form-check-label" for="inlineRadio2">小姐</label>
                 </div>
               </div>
@@ -47,7 +47,8 @@
             <div class="form-group row">
               <label for="inputConfirm" class="col-sm-2 col-form-label">密碼確認</label>
               <div class="col-sm-10">
-                <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm" placeholder="請再輸入一次密碼" minlength=6 required>
+                <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm" placeholder="請再輸入一次密碼" minlength=6
+                  required>
               </div>
             </div>
 
@@ -115,16 +116,45 @@
               event.stopPropagation();
             } else {
               var patten_tw = new RegExp(/^(09)\d{8}$/);
-              if($('#password').val() != $('#passwordConfirm').val()) {
-                swal("", "密碼輸入不一致，請重新輸入!" , "error");
+              if ($('#password').val() != $('#passwordConfirm').val()) {
+                swal("", "密碼輸入不一致，請重新輸入!", "error");
                 $('#password').val('');
                 $('#passwordConfirm').val('');
                 return;
-              } else if(!patten_tw.test($("#phone").val())) {
-                swal("", "手機號碼格式錯誤，請重新輸入!" , "error");
+              } else if (!patten_tw.test($("#phone").val())) {
+                swal("", "手機號碼格式錯誤，請重新輸入!", "error");
                 $('#phone').val('');
                 return;
               }
+
+              var newUser = {
+                'name': $('#name').val(),
+                'gender': $("input:radio[name ='gender']:checked").val(),
+                'email': $('#email').val(),
+                'password': $('#password').val(),
+                'birthday': $('#birthday').val(),
+                'phone': $('#phone').val(),
+                'county': $('#county').val(),
+                'district': $('#district').val(),
+                'address': $('#address').val()
+              };
+
+              $.ajax({
+                type: "POST",
+                url: "/user/register",
+                data: newUser,
+                dataType: "json",
+                cache: false,
+                async: false,
+                success: function (res) {
+                  if (res.success === true) {
+                    swal("", "註冊成功", "success");
+                  } else {
+                    swal("", res.message, "error");
+                  }
+                },
+                error: function () { }
+              });
             }
             form.classList.add('was-validated');
           }, false);
