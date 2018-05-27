@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-
 var firebase = require('../connections/firebase_connect');
 var fireDB = require('../connections/firebase_admin_connect');
 var fireAuth = firebase.auth();
@@ -23,14 +22,10 @@ router.post('/signup', function (req, res, next) {
   var newUser = req.body;
   fireAuth.createUserWithEmailAndPassword(newUser.email, newUser.password)
     .then(function (user) {
-      delete newUser ['password'];
+      delete newUser['password'];
       newUser.admin = 0;
       newUser.level = 0;
-      fireDB.ref('/user/'+user.uid).set(newUser);
-      return user.getIdToken();
-    })
-    .then(function(token) {
-      req.session.token = token;
+      fireDB.ref('/user/' + user.uid).set(newUser);
       res.send({
         'success': true,
         'message': '',
@@ -38,7 +33,7 @@ router.post('/signup', function (req, res, next) {
       });
     })
     .catch(function (error) {
-      res.send({ 
+      res.send({
         'success': false,
         'message': error.message,
         'redirect': null
@@ -47,8 +42,24 @@ router.post('/signup', function (req, res, next) {
 });
 
 router.get('/verify', function (req, res, next) {
-  console.log(req.session.token);
-  res.render('user/verify');
+  var user = fireAuth.currentUser;
+
+  if (user !== null) {
+    user.sendEmailVerification();
+    res.render('user/verify', { 'email': user.email });
+  } else {
+    res.redirect('/user/signup');
+  }
+});
+
+router.get('/success', function (req, res, next) {
+  var user = fireAuth.currentUser;
+
+  if (user !== null) {
+    res.render('user/success');
+  } else {
+    res.redirect('/user/signup');
+  }
 });
 
 router.get('/forgot', function (req, res, next) {
@@ -62,6 +73,35 @@ router.post('/forgot', function (req, res, next) {
 
 router.get('/level', function (req, res, next) {
   res.render('user/level');
+});
+
+router.post('/checkEmail', function (req, res, next) {
+  var user = fireAuth.currentUser;
+
+  user.reload()
+    .then(function () {
+      var success = fireAuth.currentUser.emailVerified;
+      res.send({
+        'success': success,
+        'message': null,
+        'redirect': null
+      });
+    })
+});
+
+router.post('/sendEmailVerification', function (req, res, next) {
+  var user = fireAuth.currentUser;
+
+  if (user !== null) {
+    user.sendEmailVerification()
+      .then(function () {
+        res.send({
+          'success': true,
+          'message': "驗證信已寄出",
+          'redirect': null
+        });
+      })
+  }
 });
 
 module.exports = router;

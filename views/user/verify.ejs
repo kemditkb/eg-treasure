@@ -9,7 +9,7 @@
       <h1>會員註冊</h1>
       <hr>
       <div class="row">
-        <div class="container py-5">
+        <div class="container py-4">
           <div class="form-row text-center">
             <div class="col-12 col-sm">
               <div class="alert alert-dark alert-rounded" role="alert">
@@ -28,16 +28,95 @@
             </div>
           </div>
         </div>
-
       </div>
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-8">
 
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 bg-light m-4">
+          <div>
+            <p>
+              系統已將驗證信寄至您剛填寫的電子信箱，點選信上的連結，即可完成E-mail驗證程序，謝謝。
+            </p>
+            <p>
+              如於10分鐘後仍未收到驗證信，請點選"重新寄送驗證信"按扭。
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center py-3">
+        <div class="col-12 col-sm-4">
+          <div name="unverified" id="unverified">
+            <span class="font-weight-bold">E-mail:</span>
+            <%- email %>
+              <span class="text-danger">未驗證
+                <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+              </span>
+          </div>
+          <div name="verified" id="verified" class="" style="display: none">
+            <span class="font-weight-bold">E-mail:</span>
+            <%- email %>
+              <span class="text-success">驗證成功
+                <i class="fa fa-check-circle fa-lg" aria-hidden="true"></i>
+              </span>
+          </div>
+        </div>
+        <div class="col-12 col-sm-4">
+          <button name="send-cert" id="send-cert" type="button" class="btn btn-secondary pull-right">
+            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            重寄認證信
+          </button>
+        </div>
+      </div>
+      <div class="row justify-content-center pt-3">
+        <div class="col-sm-6">
+          <button name="next" id="next" class="btn btn-primary btn-block" disabled>下一步</button>
         </div>
       </div>
     </div>
   </section>
 
   <script>
+    (function () {
+      $("#next").click(function () {
+        window.location.href = "/user/success";
+      });
 
+      $("#send-cert").click(function () {
+        $.ajax({
+          type: "POST",
+          url: "/user/sendEmailVerification",
+          data: {},
+          dataType: "json",
+          cache: false,
+          async: false,
+          success: function (res) {
+            if (res.success === true) {
+              swal("", res.message, "success");
+            }
+          },
+          error: function () { }
+        });
+      });
+    })();
+
+    function checkEmail() {
+      $.ajax({
+        type: "POST",
+        url: "/user/checkEmail",
+        data: {},
+        dataType: "json",
+        cache: false,
+        async: false,
+        success: function (res) {
+          if (res.success === true) {
+            $("#unverified").hide();
+            $("#verified").show();
+            $("#next").attr('disabled', false);
+          } else {
+            setTimeout(checkEmail, 3000);
+          }
+        },
+        error: function () { }
+      });
+    }
+    setTimeout(checkEmail, 3000);
   </script>
