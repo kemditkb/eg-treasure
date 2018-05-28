@@ -72,31 +72,36 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="menu-right">
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="/user/login">
-                <i class="fa fa-user-o fa-fw" aria-hidden="true"></i>
-                登入
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/user/signup">
-                <i class="fa fa-user-plus fa-fw" aria-hidden="true"></i>
-                註冊
-              </a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                會員專區
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fa fa-child fa-w" aria-hidden="true"></i>&nbsp;個人檔案</a>
-                <a class="dropdown-item" href="#">
-                  <i class="fa fa-file-text-o fa-w" aria-hidden="true"></i>&nbsp;訂單記錄</a>
-              </div>
-            </li>
+            <% if (typeof auth === 'undefined') { %>
+              <li class="nav-item">
+                <a class="nav-link" href="/user/login">
+                  <i class="fa fa-user-o fa-fw" aria-hidden="true"></i>
+                  登入
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/user/signup">
+                  <i class="fa fa-user-plus fa-fw" aria-hidden="true"></i>
+                  註冊
+                </a>
+              </li>
+              <% } else { %>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    會員專區
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">
+                      <i class="fa fa-child" aria-hidden="true"></i>&nbsp;個人檔案</a>
+                    <a class="dropdown-item" href="#">
+                      <i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;訂單記錄</a>
+                    <a class="dropdown-item" href="/user/logout">
+                      <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;登出</a>
+                  </div>
+                </li>
+                <% } %>
           </ul>
         </div>
       </div>
@@ -190,7 +195,7 @@
         </div>
       </div>
     </div>
-    
+
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
       crossorigin="anonymous"></script>

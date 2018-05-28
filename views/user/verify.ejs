@@ -42,45 +42,86 @@
           </div>
         </div>
       </div>
+
       <div class="row justify-content-center py-3">
-        <div class="col-12 col-sm-4">
-          <div name="unverified" id="unverified">
-            <span class="font-weight-bold">E-mail:</span>
+        <div class="col-12 col-sm-6">
+          <div name="email-unverified" id="email-unverified">
+            <span class="font-weight-bold">E-mail 驗證: </span>
             <%- email %>
               <span class="text-danger">未驗證
                 <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
               </span>
           </div>
-          <div name="verified" id="verified" class="" style="display: none">
-            <span class="font-weight-bold">E-mail:</span>
+          <div name="email-verified" id="email-verified" class="" style="display: none">
+            <span class="font-weight-bold">E-mail 驗證: </span>
             <%- email %>
               <span class="text-success">驗證成功
                 <i class="fa fa-check-circle fa-lg" aria-hidden="true"></i>
               </span>
           </div>
         </div>
-        <div class="col-12 col-sm-4">
-          <button name="send-cert" id="send-cert" type="button" class="btn btn-secondary pull-right">
+        <div class="col-12 col-sm-2">
+          <button name="mail-cert" id="mail-cert" type="button" class="btn btn-secondary btn-block">
             <i class="fa fa-envelope-o" aria-hidden="true"></i>
             重寄認證信
           </button>
         </div>
       </div>
+      <div class="row justify-content-center py-3">
+        <div class="col-12 col-sm-6">
+          <div name="phone-unverified" id="phone-unverified">
+            <span class="font-weight-bold">手機驗證: </span>
+            <%- phone %>
+              <span class="text-danger">未驗證
+                <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+              </span>
+          </div>
+          <div name="phone-verified" id="phone-verified" class="" style="display: none">
+            <span class="font-weight-bold">手機驗證:</span>
+            <%- phone %>
+              <span class="text-success">驗證成功
+                <i class="fa fa-check-circle fa-lg" aria-hidden="true"></i>
+              </span>
+          </div>
+        </div>
+        <div class="col-12 col-sm-2">
+          <button name="phone-code" id="phone-code" type="button" class="btn btn-secondary btn-block">
+            <i class="fa fa-mobile fa-lg" aria-hidden="true"></i>
+            發送驗證碼
+          </button>
+        </div>
+      </div>
+
+      <div class="row justify-content-center py-3">
+        <div class="col-12 col-sm-6">
+          <input type="text" class="form-control" id="code" placeholder="請輸入手機驗證碼">
+        </div>
+        <div class="col-12 col-sm-2">
+          <button name="phone-cert" id="phone-cert" type="button" class="btn btn-secondary btn-block">
+            <i class="fa fa-check-square-o fa-lg" aria-hidden="true"></i>
+            確認驗證碼
+          </button>
+        </div>
+      </div>
+
       <div class="row justify-content-center pt-3">
         <div class="col-sm-6">
-          <button name="next" id="next" class="btn btn-primary btn-block" disabled>下一步</button>
+          <button name="next" id="next" class="btn btn-primary btn-block" disabled>完成驗證</button>
         </div>
       </div>
     </div>
   </section>
 
   <script>
+    var emailVeified = false;
+    var phoneVerified = false;
+
     (function () {
       $("#next").click(function () {
         window.location.href = "/user/success";
       });
 
-      $("#send-cert").click(function () {
+      $("#mail-cert").click(function () {
         $.ajax({
           type: "POST",
           url: "/user/sendEmailVerification",
@@ -91,6 +132,45 @@
           success: function (res) {
             if (res.success === true) {
               swal("", res.message, "success");
+            }
+          },
+          error: function () { }
+        });
+      });
+
+      $("#phone-code").click(function () {
+        $.ajax({
+          type: "POST",
+          url: "/user/sendPhoneVerification",
+          data: {},
+          dataType: "json",
+          cache: false,
+          async: false,
+          success: function (res) {
+            if (res.success === true) {
+              swal("", res.message, "success");
+            } else {
+              swal("", res.message, "error");
+            }
+          },
+          error: function () { }
+        });
+      });
+
+      $("#phone-cert").click(function () {
+        var phoneCode = $("#code").val();
+        $.ajax({
+          type: "POST",
+          url: "/user/checkPhone",
+          data: { 'code': phoneCode },
+          dataType: "json",
+          cache: false,
+          async: false,
+          success: function (res) {
+            if (res.success === true) {
+              $("#phone-unverified").hide();
+              $("#phone-verified").show();
+              phoneVerified = true;
             }
           },
           error: function () { }
@@ -108,15 +188,25 @@
         async: false,
         success: function (res) {
           if (res.success === true) {
-            $("#unverified").hide();
-            $("#verified").show();
-            $("#next").attr('disabled', false);
-          } else {
-            setTimeout(checkEmail, 3000);
+            $("#email-unverified").hide();
+            $("#email-verified").show();
+            emailVeified = true;
           }
         },
         error: function () { }
       });
     }
-    setTimeout(checkEmail, 3000);
+
+    function checkEmailAndPhone() {
+      if (emailVeified === false) {
+        checkEmail();
+      }
+
+      if ((emailVeified === false) || (phoneVerified === false)) {
+        setTimeout(checkEmailAndPhone, 3000);
+      } else {
+        $("#next").attr('disabled', false);
+      }
+    }
+    setTimeout(checkEmailAndPhone, 3000);
   </script>
