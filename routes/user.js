@@ -3,6 +3,7 @@ var router = express.Router();
 
 var firebase = require('../connections/firebase_connect');
 var fireDB = require('../connections/firebase_admin_connect');
+var mitake = require('../connections/mitake_connect');
 var fireAuth = firebase.auth();
 
 var axios = require('axios');
@@ -17,11 +18,24 @@ router.post('/login', function (req, res, next) {
   fireAuth.signInWithEmailAndPassword(loginUser.email, loginUser.password)
     .then(function (user) {
       req.session.uid = user.uid;
-      res.send({
-        'success': true,
-        'message': '登入成功',
-        'redirect': '/'
-      });
+      fireDB.ref('/user/' + user.uid).once('value')
+        .then(function (snapshot) {
+          var profile = snapshot.val();
+          if (!user.emailVerified || !profile.phoneVerified) {
+            req.session.phone = profile.phone;
+            res.send({
+              'success': true,
+              'message': '登入成功',
+              'redirect': '/user/verify'
+            });
+          } else {
+            res.send({
+              'success': true,
+              'message': '登入成功',
+              'redirect': '/'
+            });
+          }
+        })
     })
     .catch(function (error) {
       res.send({
@@ -69,9 +83,11 @@ router.post('/signup', function (req, res, next) {
 });
 
 router.get('/verify', function (req, res, next) {
-  if (req.session.uid) {
+  if ((req.session.uid) && (req.session.phone)) {
     var user = fireAuth.currentUser;
-    user.sendEmailVerification();
+    if(!user.emailVerified) {
+      user.sendEmailVerification();
+    }
     res.render('user/verify', { auth: req.session.uid, email: user.email, phone: req.session.phone });
   } else {
     res.redirect('/user/signup');
@@ -91,8 +107,22 @@ router.get('/forgot', function (req, res, next) {
 });
 
 router.post('/forgot', function (req, res, next) {
-  console.log(req.body);
-  res.redirect('/');
+  var email = req.body.email;
+  fireAuth.sendPasswordResetEmail(email)
+  .then(function () {
+    res.send({
+      'success': true,
+      'message': "密碼重置的郵件已發送，請查收郵件。",
+      'redirect': null
+    });
+  })
+  .catch(function(error) {
+    res.send({
+      'success': false,
+      'message': "你輸入的郵件位置無效，請重新輸入。",
+      'redirect': null
+    });
+  })
 });
 
 router.get('/level', function (req, res, next) {
@@ -111,12 +141,24 @@ router.post('/checkEmail', function (req, res, next) {
           'redirect': null
         });
       })
-  } else {
-    res.redirect('/user/signup');
   }
 });
 
 router.post('/checkPhone', function (req, res, next) {
+  if (req.session.uid) {
+    fireDB.ref('/user/' + req.session.uid + '/phoneVerified').once('value')
+      .then(function (snapshot) {
+        var success = snapshot.val();
+        res.send({
+          'success': success,
+          'message': null,
+          'redirect': null
+        });
+      })
+  }
+});
+
+router.post('/checkPhoneCode', function (req, res, next) {
   if (req.session.uid) {
     var code = req.body.code;
     if (code === req.session.code) {
@@ -133,8 +175,6 @@ router.post('/checkPhone', function (req, res, next) {
         'redirect': null
       });
     }
-  } else {
-    res.redirect('/user/signup');
   }
 });
 
@@ -149,8 +189,6 @@ router.post('/sendEmailVerification', function (req, res, next) {
           'redirect': null
         });
       })
-  } else {
-    res.redirect('/user/signup');
   }
 });
 
@@ -162,8 +200,8 @@ function getRandomInt(min, max) {
 
 router.post('/sendPhoneVerification', function (req, res, next) {
   if ((req.session.uid) && (req.session.phone)) {
-    var username = '';
-    var password = '';
+    var username = mitake.username;
+    var password = mitake.password;
     var phone = req.session.phone;
     var code = getRandomInt(10000, 99999);
     req.session.code = code.toString();
@@ -185,8 +223,6 @@ router.post('/sendPhoneVerification', function (req, res, next) {
           'redirect': null
         });
       })
-  } else {
-    res.redirect('/user/signup');
   }
 });
 

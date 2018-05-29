@@ -113,7 +113,7 @@
   </section>
 
   <script>
-    var emailVeified = false;
+    var emailVerified = false;
     var phoneVerified = false;
 
     (function () {
@@ -161,7 +161,7 @@
         var phoneCode = $("#code").val();
         $.ajax({
           type: "POST",
-          url: "/user/checkPhone",
+          url: "/user/checkPhoneCode",
           data: { 'code': phoneCode },
           dataType: "json",
           cache: false,
@@ -190,7 +190,26 @@
           if (res.success === true) {
             $("#email-unverified").hide();
             $("#email-verified").show();
-            emailVeified = true;
+            emailVerified = true;
+          }
+        },
+        error: function () { }
+      });
+    }
+
+    function checkPhone() {
+      $.ajax({
+        type: "POST",
+        url: "/user/checkPhone",
+        data: {},
+        dataType: "json",
+        cache: false,
+        async: false,
+        success: function (res) {
+          if (res.success === true) {
+            $("#phone-unverified").hide();
+            $("#phone-verified").show();
+            phoneVerified = true;
           }
         },
         error: function () { }
@@ -198,11 +217,15 @@
     }
 
     function checkEmailAndPhone() {
-      if (emailVeified === false) {
+      if (emailVerified === false) {
         checkEmail();
       }
 
-      if ((emailVeified === false) || (phoneVerified === false)) {
+      if (phoneVerified === false) {
+        checkPhone();
+      }
+
+      if ((emailVerified === false) || (phoneVerified === false)) {
         setTimeout(checkEmailAndPhone, 3000);
       } else {
         $("#next").attr('disabled', false);
