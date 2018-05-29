@@ -29,6 +29,10 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
+app.use(function(req, res, next) {
+  res.locals.userId = req.session.uid;
+  next();
+});
 app.use(flash());
 
 app.use('/', indexRouter);

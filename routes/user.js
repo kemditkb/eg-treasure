@@ -53,7 +53,7 @@ router.get('/logout', function (req, res, next) {
 });
 
 router.get('/signup', function (req, res, next) {
-  res.render('user/signup', { auth: req.session.uid });
+  res.render('user/signup');
 });
 
 router.post('/signup', function (req, res, next) {
@@ -96,7 +96,7 @@ router.get('/verify', function (req, res, next) {
 
 router.get('/success', function (req, res, next) {
   if (req.session.uid) {
-    res.render('user/success', { auth: req.session.uid });
+    res.render('user/success');
   } else {
     res.redirect('/user/signup');
   }
@@ -126,7 +126,7 @@ router.post('/forgot', function (req, res, next) {
 });
 
 router.get('/level', function (req, res, next) {
-  res.render('user/level', { auth: req.session.uid });
+  res.render('user/level');
 });
 
 router.post('/checkEmail', function (req, res, next) {
