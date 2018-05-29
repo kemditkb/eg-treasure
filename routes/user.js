@@ -23,25 +23,25 @@ router.post('/login', function (req, res, next) {
           var profile = snapshot.val();
           if (!user.emailVerified || !profile.phoneVerified) {
             req.session.phone = profile.phone;
-            res.send({
-              'success': true,
-              'message': '登入成功',
-              'redirect': '/user/verify'
+            res.json({
+              success: true,
+              message: '登入成功',
+              redirect: '/user/verify'
             });
           } else {
-            res.send({
-              'success': true,
-              'message': '登入成功',
-              'redirect': '/'
+            res.json({
+              success: true,
+              message: '登入成功',
+              redirect: '/'
             });
           }
         })
     })
     .catch(function (error) {
-      res.send({
-        'success': false,
-        'message': '登入失敗',
-        'redirect': null
+      res.json({
+        success: false,
+        message: '登入失敗',
+        redirect: null
       });
     })
 });
@@ -67,17 +67,17 @@ router.post('/signup', function (req, res, next) {
       fireDB.ref('/user/' + user.uid).set(newUser);
       req.session.uid = user.uid;
       req.session.phone = newUser.phone;
-      res.send({
-        'success': true,
-        'message': '',
-        'redirect': '/user/verify'
+      res.json({
+        success: true,
+        message: '',
+        redirect: '/user/verify'
       });
     })
     .catch(function (error) {
-      res.send({
-        'success': false,
-        'message': error.message,
-        'redirect': null
+      res.json({
+        success: false,
+        message: error.message,
+        redirect: null
       });
     })
 });
@@ -110,17 +110,17 @@ router.post('/forgot', function (req, res, next) {
   var email = req.body.email;
   fireAuth.sendPasswordResetEmail(email)
   .then(function () {
-    res.send({
-      'success': true,
-      'message': "密碼重置的郵件已發送，請查收郵件。",
-      'redirect': null
+    res.json({
+      success: true,
+      message: "密碼重置的郵件已發送，請查收郵件。",
+      redirect: null
     });
   })
   .catch(function(error) {
-    res.send({
-      'success': false,
-      'message': "你輸入的郵件位置無效，請重新輸入。",
-      'redirect': null
+    res.json({
+      success: false,
+      message: "你輸入的郵件位置無效，請重新輸入。",
+      redirect: null
     });
   })
 });
@@ -135,10 +135,10 @@ router.post('/checkEmail', function (req, res, next) {
     user.reload()
       .then(function () {
         var success = fireAuth.currentUser.emailVerified;
-        res.send({
-          'success': success,
-          'message': null,
-          'redirect': null
+        res.json({
+          success: success,
+          message: null,
+          redirect: null
         });
       })
   }
@@ -149,10 +149,10 @@ router.post('/checkPhone', function (req, res, next) {
     fireDB.ref('/user/' + req.session.uid + '/phoneVerified').once('value')
       .then(function (snapshot) {
         var success = snapshot.val();
-        res.send({
-          'success': success,
-          'message': null,
-          'redirect': null
+        res.json({
+          success: success,
+          message: null,
+          redirect: null
         });
       })
   }
@@ -163,16 +163,16 @@ router.post('/checkPhoneCode', function (req, res, next) {
     var code = req.body.code;
     if (code === req.session.code) {
       fireDB.ref('/user/' + req.session.uid).update({ 'phoneVerified': true });
-      res.send({
-        'success': true,
-        'message': null,
-        'redirect': null
+      res.json({
+        success: true,
+        message: null,
+        redirect: null
       });
     } else {
-      res.send({
-        'success': false,
-        'message': "驗證碼錯誤，請重新輸入",
-        'redirect': null
+      res.json({
+        success: false,
+        message: "驗證碼錯誤，請重新輸入",
+        redirect: null
       });
     }
   }
@@ -183,10 +183,10 @@ router.post('/sendEmailVerification', function (req, res, next) {
     var user = fireAuth.currentUser;
     user.sendEmailVerification()
       .then(function () {
-        res.send({
-          'success': true,
-          'message': "驗證信已寄出",
-          'redirect': null
+        res.json({
+          success: true,
+          message: "驗證信已寄出",
+          redirect: null
         });
       })
   }
@@ -210,17 +210,17 @@ router.post('/sendPhoneVerification', function (req, res, next) {
 
     axios.get(smsApi)
       .then(function (response) {
-        res.send({
-          'success': true,
-          'message': "驗證碼已發送",
-          'redirect': null
+        res.json({
+          success: true,
+          message: "驗證碼已發送",
+          redirect: null
         });
       })
       .catch(function (error) {
-        res.send({
-          'success': false,
-          'message': "",
-          'redirect': null
+        res.json({
+          success: false,
+          message: "",
+          redirect: null
         });
       })
   }
