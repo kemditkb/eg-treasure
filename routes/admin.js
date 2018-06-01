@@ -6,7 +6,19 @@ var fireDB = require('../connections/firebase_admin_connect');
 var fireAuth = firebase.auth();
 
 router.get('/', function (req, res, next) {
-  res.render('admin/login');
+  if (req.session.admin) {
+    res.render('admin/index');
+  } else {
+    res.render('admin/login');
+  }
+});
+
+router.get('/category', function (req, res, next) {
+  res.render('admin/category');
+});
+
+router.get('/product', function (req, res, next) {
+  res.render('admin/product');
 });
 
 router.post('/login', function (req, res, next) {
