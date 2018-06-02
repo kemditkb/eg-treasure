@@ -10,7 +10,7 @@ var axios = require('axios');
 var querystring = require('querystring');
 
 router.get('/login', function (req, res, next) {
-  res.render('user/login');
+  res.render('user/login', { layout: 'layout/basic' });
 });
 
 router.post('/login', function (req, res, next) {
@@ -53,7 +53,7 @@ router.get('/logout', function (req, res, next) {
 });
 
 router.get('/signup', function (req, res, next) {
-  res.render('user/signup');
+  res.render('user/signup', { layout: 'layout/treasure' });
 });
 
 router.post('/signup', function (req, res, next) {
@@ -88,7 +88,7 @@ router.get('/verify', function (req, res, next) {
     if(!user.emailVerified) {
       user.sendEmailVerification();
     }
-    res.render('user/verify', { auth: req.session.uid, email: user.email, phone: req.session.phone });
+    res.render('user/verify', { layout: 'layout/treasure', auth: req.session.uid, email: user.email, phone: req.session.phone });
   } else {
     res.redirect('/user/signup');
   }
@@ -96,14 +96,14 @@ router.get('/verify', function (req, res, next) {
 
 router.get('/success', function (req, res, next) {
   if (req.session.uid) {
-    res.render('user/success');
+    res.render('user/success', { layout: 'layout/treasure' });
   } else {
     res.redirect('/user/signup');
   }
 });
 
 router.get('/forgot', function (req, res, next) {
-  res.render('user/forgot');
+  res.render('user/forgot', { layout: 'layout/basic' });
 });
 
 router.post('/forgot', function (req, res, next) {
@@ -126,7 +126,7 @@ router.post('/forgot', function (req, res, next) {
 });
 
 router.get('/level', function (req, res, next) {
-  res.render('user/level');
+  res.render('user/level', { layout: 'layout/treasure' });
 });
 
 router.post('/checkEmail', function (req, res, next) {

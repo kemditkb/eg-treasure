@@ -7,18 +7,18 @@ var fireAuth = firebase.auth();
 
 router.get('/', function (req, res, next) {
   if (req.session.admin) {
-    res.render('admin/index');
+    res.render('admin/index', { layout: 'layout/admin' });
   } else {
-    res.render('admin/login');
+    res.render('admin/login', { layout: 'layout/basic' });
   }
 });
 
 router.get('/category', function (req, res, next) {
-  res.render('admin/category');
+  res.render('admin/category', { layout: 'layout/admin' });
 });
 
 router.get('/product', function (req, res, next) {
-  res.render('admin/product');
+  res.render('admin/product', { layout: 'layout/admin' });
 });
 
 router.post('/login', function (req, res, next) {

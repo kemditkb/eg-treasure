@@ -1,328 +1,327 @@
-<% layout('../layout/treasure') %>
-  <style>
-    #countdown_dashboard {
-      height: 70px;
-    }
+<style>
+  #countdown_dashboard {
+    height: 70px;
+  }
 
-    #countdown_dashboard .dash {
-      width: 72px;
-      height: 75px;
-      background: url(/images/dash.png) no-repeat;
-      float: left;
-      margin: 0 2px;
-      position: relative;
-    }
+  #countdown_dashboard .dash {
+    width: 72px;
+    height: 75px;
+    background: url(/images/dash.png) no-repeat;
+    float: left;
+    margin: 0 2px;
+    position: relative;
+  }
 
-    #countdown_dashboard .dash .digit {
-      font-size: 30pt;
-      font-weight: bold;
-      float: left;
-      width: 32px;
-      text-align: center;
-      font-family: Verdana, Geneva, sans-serif;
-      color: #555;
-      position: relative;
-      padding-left: 4px;
-    }
+  #countdown_dashboard .dash .digit {
+    font-size: 30pt;
+    font-weight: bold;
+    float: left;
+    width: 32px;
+    text-align: center;
+    font-family: Verdana, Geneva, sans-serif;
+    color: #555;
+    position: relative;
+    padding-left: 4px;
+  }
 
-    #countdown_dashboard .dash_title {
-      position: absolute;
-      display: block;
-      bottom: 16px;
-      right: 2px;
-      font-size: 9pt;
-      color: #ff8400;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
+  #countdown_dashboard .dash_title {
+    position: absolute;
+    display: block;
+    bottom: 16px;
+    right: 2px;
+    font-size: 9pt;
+    color: #ff8400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
 
-    #countdown_dashboard .dash_icon {
-      font-size: 18pt;
-    }
-  </style>
-  <section>
-    <div class="container my-5">
-      <h1>拍品競拍</h1>
-      <hr>
-      <div class="row">
-        <div class="col-md-4 p-0">
-          <img src="https://images.unsplash.com/photo-1498480086004-2400bd8c3663?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3bf38b7a55952ed8c408ae775094f9dd&auto=format&fit=crop&w=1350&q=80"
-            alt="" id="b_img" width="100%">
-          <div class="container py-2">
-            <div class="row px-0">
-              <div class="col-4 col-md-4 px-0 py-1">
-                <div class="border" style="padding: 2px">
-                  <a class="s_img">
-                    <img src="https://images.unsplash.com/photo-1498480086004-2400bd8c3663?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3bf38b7a55952ed8c408ae775094f9dd&auto=format&fit=crop&w=1350&q=80"
-                      alt="" width="100%">
-                  </a>
-                </div>
+  #countdown_dashboard .dash_icon {
+    font-size: 18pt;
+  }
+</style>
+<section>
+  <div class="container my-5">
+    <h1>拍品競拍</h1>
+    <hr>
+    <div class="row">
+      <div class="col-md-4 p-0">
+        <img src="https://images.unsplash.com/photo-1498480086004-2400bd8c3663?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3bf38b7a55952ed8c408ae775094f9dd&auto=format&fit=crop&w=1350&q=80"
+          alt="" id="b_img" width="100%">
+        <div class="container py-2">
+          <div class="row px-0">
+            <div class="col-4 col-md-4 px-0 py-1">
+              <div class="border" style="padding: 2px">
+                <a class="s_img">
+                  <img src="https://images.unsplash.com/photo-1498480086004-2400bd8c3663?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3bf38b7a55952ed8c408ae775094f9dd&auto=format&fit=crop&w=1350&q=80"
+                    alt="" width="100%">
+                </a>
               </div>
-              <div class="col-4 col-md-4 px-0 py-1">
-                <div class="border" style="padding: 2px">
-                  <a class="s_img">
-                    <img src="https://images.unsplash.com/photo-1494847169657-b5c02877b489?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=53cd5fb69fbd43e22f10be2334291637&auto=format&fit=crop&w=1350&q=80"
-                      alt="" width="100%">
-                  </a>
-                </div>
+            </div>
+            <div class="col-4 col-md-4 px-0 py-1">
+              <div class="border" style="padding: 2px">
+                <a class="s_img">
+                  <img src="https://images.unsplash.com/photo-1494847169657-b5c02877b489?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=53cd5fb69fbd43e22f10be2334291637&auto=format&fit=crop&w=1350&q=80"
+                    alt="" width="100%">
+                </a>
               </div>
-              <div class="col-4 col-md-4 px-0 py-1">
-                <div class="border" style="padding: 2px">
-                  <a class="s_img">
-                    <img src="https://images.unsplash.com/photo-1502911714542-002b74c313cf?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9b04f168ab65b8b645b29c46f2124173&auto=format&fit=crop&w=1351&q=80"
-                      alt="" width="100%">
-                  </a>
-                </div>
+            </div>
+            <div class="col-4 col-md-4 px-0 py-1">
+              <div class="border" style="padding: 2px">
+                <a class="s_img">
+                  <img src="https://images.unsplash.com/photo-1502911714542-002b74c313cf?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9b04f168ab65b8b645b29c46f2124173&auto=format&fit=crop&w=1351&q=80"
+                    alt="" width="100%">
+                </a>
               </div>
-              <div class="col-4 col-md-4 px-0 py-1">
-                <div class="border" style="padding: 2px">
-                  <a class="s_img">
-                    <img src="https://images.unsplash.com/photo-1493479874819-4303c36fa0f9?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a944d1ade1118d11a240266462fcfc9a&auto=format&fit=crop&w=1349&q=80"
-                      alt="" width="100%">
-                  </a>
-                </div>
+            </div>
+            <div class="col-4 col-md-4 px-0 py-1">
+              <div class="border" style="padding: 2px">
+                <a class="s_img">
+                  <img src="https://images.unsplash.com/photo-1493479874819-4303c36fa0f9?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a944d1ade1118d11a240266462fcfc9a&auto=format&fit=crop&w=1349&q=80"
+                    alt="" width="100%">
+                </a>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-md-8">
-          <div class="border-bottom">
-            <h1>花瓶</h1>
-          </div>
-          <div class="py-2 border-bottom">
-            <div id="countdown_dashboard">
-              <div class="dash text-center d-none d-sm-block pt-2">
-                <i class="fa fa-clock-o fa-3x" aria-hidden="true"></i>
+      </div>
+      <div class="col-md-8">
+        <div class="border-bottom">
+          <h1>花瓶</h1>
+        </div>
+        <div class="py-2 border-bottom">
+          <div id="countdown_dashboard">
+            <div class="dash text-center d-none d-sm-block pt-2">
+              <i class="fa fa-clock-o fa-3x" aria-hidden="true"></i>
+            </div>
+            <div class="dash days_dash sd">
+              <span class="dash_title">天</span>
+              <div class="digit">
+                <div class="top" style="display: none;">0</div>
+                <div class="bottom" style="display: block;">0</div>
               </div>
-              <div class="dash days_dash sd">
-                <span class="dash_title">天</span>
-                <div class="digit">
-                  <div class="top" style="display: none;">0</div>
-                  <div class="bottom" style="display: block;">0</div>
-                </div>
-                <div class="digit">
-                  <div class="top" style="display: none;">0</div>
-                  <div class="bottom" style="display: block;">0</div>
-                </div>
+              <div class="digit">
+                <div class="top" style="display: none;">0</div>
+                <div class="bottom" style="display: block;">0</div>
               </div>
-              <div class="dash hours_dash sd">
-                <span class="dash_title">時</span>
-                <div class="digit">
-                  <div class="top" style="display: none;">0</div>
-                  <div class="bottom" style="display: block;">0</div>
-                </div>
-                <div class="digit">
-                  <div class="top" style="display: none;">0</div>
-                  <div class="bottom" style="display: block;">0</div>
-                </div>
+            </div>
+            <div class="dash hours_dash sd">
+              <span class="dash_title">時</span>
+              <div class="digit">
+                <div class="top" style="display: none;">0</div>
+                <div class="bottom" style="display: block;">0</div>
               </div>
-              <div class="dash minutes_dash sd">
-                <span class="dash_title">分</span>
-                <div class="digit">
-                  <div class="top" style="display: none;">0</div>
-                  <div class="bottom" style="display: block;">0</div>
-                </div>
-                <div class="digit">
-                  <div class="top" style="display: none;">0</div>
-                  <div class="bottom" style="display: block;">0</div>
-                </div>
+              <div class="digit">
+                <div class="top" style="display: none;">0</div>
+                <div class="bottom" style="display: block;">0</div>
               </div>
-              <div class="dash seconds_dash sd">
-                <span class="dash_title">秒</span>
-                <div class="digit">
-                  <div class="top" style="display: none;">0</div>
-                  <div class="bottom" style="display: block;">0</div>
-                </div>
-                <div class="digit">
-                  <div class="top" style="display: none">0</div>
-                  <div class="bottom" style="display: block;">0</div>
-                </div>
+            </div>
+            <div class="dash minutes_dash sd">
+              <span class="dash_title">分</span>
+              <div class="digit">
+                <div class="top" style="display: none;">0</div>
+                <div class="bottom" style="display: block;">0</div>
+              </div>
+              <div class="digit">
+                <div class="top" style="display: none;">0</div>
+                <div class="bottom" style="display: block;">0</div>
+              </div>
+            </div>
+            <div class="dash seconds_dash sd">
+              <span class="dash_title">秒</span>
+              <div class="digit">
+                <div class="top" style="display: none;">0</div>
+                <div class="bottom" style="display: block;">0</div>
+              </div>
+              <div class="digit">
+                <div class="top" style="display: none">0</div>
+                <div class="bottom" style="display: block;">0</div>
               </div>
             </div>
           </div>
-          <div class="py-1 m-2 border-bottom">
-            <dl class="row">
-              <dt class="col-4 col-sm-2">目前出價</dt>
-              <dd class="col-8 col-sm-10">
-                <div class="text-danger h5">
-                  <strong>TWD 3,000</strong>
-                </div>
-              </dd>
+        </div>
+        <div class="py-1 m-2 border-bottom">
+          <dl class="row">
+            <dt class="col-4 col-sm-2">目前出價</dt>
+            <dd class="col-8 col-sm-10">
+              <div class="text-danger h5">
+                <strong>TWD 3,000</strong>
+              </div>
+            </dd>
 
-              <dt class="col-4 col-sm-2">起標價格</dt>
-              <dd class="col-8 col-sm-10">TWD 3,000</dd>
+            <dt class="col-4 col-sm-2">起標價格</dt>
+            <dd class="col-8 col-sm-10">TWD 3,000</dd>
 
-              <dt class="col-4 col-sm-2">出價次數</dt>
-              <dd class="col-8 col-sm-10">0 次出價</dd>
+            <dt class="col-4 col-sm-2">出價次數</dt>
+            <dd class="col-8 col-sm-10">0 次出價</dd>
 
-              <dt class="col-4 col-sm-2">出價增額</dt>
-              <dd class="col-8 col-sm-10">TWD 50</dd>
+            <dt class="col-4 col-sm-2">出價增額</dt>
+            <dd class="col-8 col-sm-10">TWD 50</dd>
 
-              <dt class="col-4 col-sm-2">最高出價者</dt>
-              <dd class="col-8 col-sm-10">-</dd>
+            <dt class="col-4 col-sm-2">最高出價者</dt>
+            <dd class="col-8 col-sm-10">-</dd>
 
-              <dt class="col-4 col-sm-2">出價次數</dt>
-              <dd class="col-8 col-sm-10">0 次出價</dd>
+            <dt class="col-4 col-sm-2">出價次數</dt>
+            <dd class="col-8 col-sm-10">0 次出價</dd>
 
-              <dt class="col-4 col-sm-2">商品狀況</dt>
-              <dd class="col-8 col-sm-10">舊物</dd>
+            <dt class="col-4 col-sm-2">商品狀況</dt>
+            <dd class="col-8 col-sm-10">舊物</dd>
 
-              <dt class="col-4 col-sm-2">付款方式</dt>
-              <dd class="col-8 col-sm-10">銀行匯款、現場付清、線上刷卡(限海外)</dd>
+            <dt class="col-4 col-sm-2">付款方式</dt>
+            <dd class="col-8 col-sm-10">銀行匯款、現場付清、線上刷卡(限海外)</dd>
 
-              <dt class="col-4 col-sm-2">取貨方式</dt>
-              <dd class="col-8 col-sm-10">台灣地區限面交(海外地區可運送)</dd>
+            <dt class="col-4 col-sm-2">取貨方式</dt>
+            <dd class="col-8 col-sm-10">台灣地區限面交(海外地區可運送)</dd>
 
-              <dt class="col-4 col-sm-2">運　　費</dt>
-              <dd class="col-8 col-sm-10">得拍者(買家)自費運送</dd>
+            <dt class="col-4 col-sm-2">運　　費</dt>
+            <dd class="col-8 col-sm-10">得拍者(買家)自費運送</dd>
 
-              <dt class="col-4 col-sm-2">商品所在地</dt>
-              <dd class="col-8 col-sm-10">台北市</dd>
+            <dt class="col-4 col-sm-2">商品所在地</dt>
+            <dd class="col-8 col-sm-10">台北市</dd>
 
-              <dt class="col-4 col-sm-2">商品編號</dt>
-              <dd class="col-8 col-sm-10">ABC-12345</dd>
-            </dl>
-          </div>
-          <div class="py-1 m-2">
-            <div class="row">
-              <div class="col-md-6">
-                <form>
-                  <fieldset class="form-group">
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="bid_type" id="gridRadios1" value="1" checked>
-                          <label class="form-check-label" for="gridRadios1">
-                            直接出價
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="bid_type" id="gridRadios2" value="2">
-                          <label class="form-check-label" for="gridRadios2">
-                            自動出價
-                          </label>
-                        </div>
+            <dt class="col-4 col-sm-2">商品編號</dt>
+            <dd class="col-8 col-sm-10">ABC-12345</dd>
+          </dl>
+        </div>
+        <div class="py-1 m-2">
+          <div class="row">
+            <div class="col-md-6">
+              <form>
+                <fieldset class="form-group">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="bid_type" id="gridRadios1" value="1" checked>
+                        <label class="form-check-label" for="gridRadios1">
+                          直接出價
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="bid_type" id="gridRadios2" value="2">
+                        <label class="form-check-label" for="gridRadios2">
+                          自動出價
+                        </label>
                       </div>
                     </div>
-                  </fieldset>
-                  <div class="col-12 bg-warning">
-                    <div class="text-white">
-                      <p id="bid_message">請輸入出價金額</p>
-                    </div>
                   </div>
-                  <div class="form-group row">
-                    <div class="col-12">
-                      <input type="text" class="form-control" id="inputPrice" placeholder="請出價">
-                    </div>
+                </fieldset>
+                <div class="col-12 bg-warning">
+                  <div class="text-white">
+                    <p id="bid_message">請輸入出價金額</p>
                   </div>
-                  <div class="form-group row">
-                    <div class="col-12">
-                      <button type="submit" class="btn btn-primary btn-block">出價</button>
-                    </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-12">
+                    <input type="text" class="form-control" id="inputPrice" placeholder="請出價">
                   </div>
-                </form>
-              </div>
-              <div class="col-md-6"></div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-primary btn-block">出價</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col">
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home"
+              aria-selected="true">拍品資訊</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile"
+              aria-selected="false">出價記錄</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact"
+              aria-selected="false">問與答</a>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="container">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus voluptatum sint reiciendis facere quidem laborum quo odit.
+              Eveniet asperiores dolorum labore rerum similique voluptates nostrum, recusandae ut eligendi veniam exercitationem
+              possimus saepe. Praesentium id minus repellat ullam, aliquam laboriosam temporibus libero alias, et iusto quisquam
+              sint eius dolores non placeat magni harum aperiam corrupti ducimus porro optio nisi commodi minima qui. Cupiditate
+              maxime ea reprehenderit eligendi illo culpa animi cumque blanditiis, soluta incidunt libero, dolore est in
+              iure commodi nam temporibus nisi dolores quasi placeat provident molestiae harum. Ducimus odio ipsa, repudiandae
+              est ad tenetur corporis unde harum praesentium commodi!
+            </div>
+
+          </div>
+          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="container">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, quis odio libero impedit, aliquam voluptatum adipisci repudiandae
+              facilis ipsa amet esse repellat, quaerat ratione reprehenderit quod est fugiat. Tenetur autem officiis est
+              veniam, odit voluptate iure animi delectus incidunt quod, laborum aliquam temporibus saepe harum, id dolor
+              debitis veritatis aliquid excepturi? Ducimus neque voluptates, at, fugit dignissimos vitae molestiae dolorum
+              voluptatibus totam id quo sequi. Temporibus, dolorem. Quos quam doloremque error illum voluptate et necessitatibus
+              deserunt deleniti, natus quasi! Vitae, nesciunt ipsam dolores facilis ea numquam perferendis ex? Ab iste dolorem
+              porro inventore deserunt eaque nihil. Magni explicabo non, reprehenderit ullam, omnis neque amet autem ipsum
+              architecto sapiente incidunt id totam iure sequi magnam tempore. Impedit cumque modi perferendis vel atque
+              repellat, minus vero numquam eius delectus magnam temporibus labore totam quaerat tempora nobis commodi quas
+              natus odit est! Ducimus dolores nesciunt vel laborum itaque officia culpa laboriosam at corrupti facilis atque,
+              iste consequatur illo? Labore laboriosam natus modi minima deleniti accusantium aliquam a! Tenetur illo explicabo
+              cum, nesciunt quo cumque. Minus possimus eius similique facilis commodi magnam ut perspiciatis laudantium debitis,
+              dolore temporibus accusamus doloribus quas quos id porro! Molestias voluptatem blanditiis debitis. Quaerat
+              repellat fugit consequatur est minima.
+            </div>
+          </div>
+          <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <div class="container">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis earum dolor, repellat ratione cum eaque? Quidem perspiciatis
+              rem consequatur velit quo, eaque vitae aperiam. Quasi, vitae voluptate! Perspiciatis sequi unde nesciunt quod
+              quo fugiat asperiores corrupti perferendis facilis, consequatur, aut adipisci, minima voluptatum in qui aspernatur
+              repudiandae. Repellendus, iste tempora.
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section>
-    <div class="container mb-3">
-      <div class="row">
-        <div class="col">
-          <nav>
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home"
-                aria-selected="true">拍品資訊</a>
-              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile"
-                aria-selected="false">出價記錄</a>
-              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact"
-                aria-selected="false">問與答</a>
-            </div>
-          </nav>
-          <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-              <div class="container">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus voluptatum sint reiciendis facere quidem laborum quo odit.
-                  Eveniet asperiores dolorum labore rerum similique voluptates nostrum, recusandae ut eligendi veniam exercitationem
-                  possimus saepe. Praesentium id minus repellat ullam, aliquam laboriosam temporibus libero alias, et iusto quisquam
-                  sint eius dolores non placeat magni harum aperiam corrupti ducimus porro optio nisi commodi minima qui. Cupiditate
-                  maxime ea reprehenderit eligendi illo culpa animi cumque blanditiis, soluta incidunt libero, dolore est in
-                  iure commodi nam temporibus nisi dolores quasi placeat provident molestiae harum. Ducimus odio ipsa, repudiandae
-                  est ad tenetur corporis unde harum praesentium commodi!
-              </div>
-
-            </div>
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-              <div class="container">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, quis odio libero impedit, aliquam voluptatum adipisci repudiandae
-                  facilis ipsa amet esse repellat, quaerat ratione reprehenderit quod est fugiat. Tenetur autem officiis est
-                  veniam, odit voluptate iure animi delectus incidunt quod, laborum aliquam temporibus saepe harum, id dolor
-                  debitis veritatis aliquid excepturi? Ducimus neque voluptates, at, fugit dignissimos vitae molestiae dolorum
-                  voluptatibus totam id quo sequi. Temporibus, dolorem. Quos quam doloremque error illum voluptate et necessitatibus
-                  deserunt deleniti, natus quasi! Vitae, nesciunt ipsam dolores facilis ea numquam perferendis ex? Ab iste dolorem
-                  porro inventore deserunt eaque nihil. Magni explicabo non, reprehenderit ullam, omnis neque amet autem ipsum
-                  architecto sapiente incidunt id totam iure sequi magnam tempore. Impedit cumque modi perferendis vel atque
-                  repellat, minus vero numquam eius delectus magnam temporibus labore totam quaerat tempora nobis commodi quas
-                  natus odit est! Ducimus dolores nesciunt vel laborum itaque officia culpa laboriosam at corrupti facilis atque,
-                  iste consequatur illo? Labore laboriosam natus modi minima deleniti accusantium aliquam a! Tenetur illo explicabo
-                  cum, nesciunt quo cumque. Minus possimus eius similique facilis commodi magnam ut perspiciatis laudantium debitis,
-                  dolore temporibus accusamus doloribus quas quos id porro! Molestias voluptatem blanditiis debitis. Quaerat
-                  repellat fugit consequatur est minima.
-              </div>
-            </div>
-            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-              <div class="container">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis earum dolor, repellat ratione cum eaque? Quidem perspiciatis
-                  rem consequatur velit quo, eaque vitae aperiam. Quasi, vitae voluptate! Perspiciatis sequi unde nesciunt quod
-                  quo fugiat asperiores corrupti perferendis facilis, consequatur, aut adipisci, minima voluptatum in qui aspernatur
-                  repudiandae. Repellendus, iste tempora.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <script type="text/javascript" src="/javascripts/jquery.lwtCountdown-1.0.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $('.s_img').click(function () {
-        var img = $(this).find('img').attr('src');
-        $('#b_img').attr('src', img);
-      });
+<script type="text/javascript" src="/javascripts/jquery.lwtCountdown-1.0.js"></script>
+<script type="text/javascript">
+  $(function () {
+    $('.s_img').click(function () {
+      var img = $(this).find('img').attr('src');
+      $('#b_img').attr('src', img);
     });
+  });
 
-    $(function () {
-      $('#countdown_dashboard').countDown({
-        omitWeeks: true,
-        targetDate: {
-          'day': 1,
-          'month': 6,
-          'year': 2018,
-          'hour': 0,
-          'min': 0,
-          'sec': 0
-        }
-      });
+  $(function () {
+    $('#countdown_dashboard').countDown({
+      omitWeeks: true,
+      targetDate: {
+        'day': 30,
+        'month': 6,
+        'year': 2018,
+        'hour': 0,
+        'min': 0,
+        'sec': 0
+      }
+    });
+  })
+
+  $(function () {
+    $('input[type=radio][name=bid_type]').change(function () {
+
+      if (this.value == 1) {
+        console.log(this.value);
+        $('#bid_message').html('請輸入出價金額');
+      } else {
+        console.log(this.value);
+        $('#bid_message').html('請輸入出價上限，系統將自動依增額出價至上限金額');
+      }
     })
+  })
 
-    $(function () {
-      $('input[type=radio][name=bid_type]').change(function () {
-
-        if (this.value == 1) {
-          console.log(this.value);
-          $('#bid_message').html('請輸入出價金額');
-        } else {
-          console.log(this.value);
-          $('#bid_message').html('請輸入出價上限，系統將自動依增額出價至上限金額');
-        }
-      })
-    })
-
-  </script>
+</script>

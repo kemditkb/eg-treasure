@@ -1,193 +1,192 @@
-<% layout('../layout/treasure') %>
-  <style>
-    .alert-rounded {
-      border-radius: 50px;
-    }
-  </style>
-  <section>
-    <div class="container my-5">
-      <h1>會員註冊</h1>
-      <hr>
-      <div class="row">
-        <div class="container py-5">
-          <div class="form-row text-center">
-            <div class="col-12 col-sm">
-              <div class="alert alert-primary alert-rounded" role="alert">
-                1. 填寫會員資料
-              </div>
+<style>
+  .alert-rounded {
+    border-radius: 50px;
+  }
+</style>
+<section>
+  <div class="container my-5">
+    <h1>會員註冊</h1>
+    <hr>
+    <div class="row">
+      <div class="container py-5">
+        <div class="form-row text-center">
+          <div class="col-12 col-sm">
+            <div class="alert alert-primary alert-rounded" role="alert">
+              1. 填寫會員資料
             </div>
-            <div class="col-12 col-sm">
-              <div class="alert alert-secondary alert-rounded" role="alert">
-                2. 電子信箱與手機認證
-              </div>
+          </div>
+          <div class="col-12 col-sm">
+            <div class="alert alert-secondary alert-rounded" role="alert">
+              2. 電子信箱與手機認證
             </div>
-            <div class="col-12 col-sm">
-              <div class="alert alert-secondary alert-rounded" role="alert">
-                3. 完成註冊
-              </div>
+          </div>
+          <div class="col-12 col-sm">
+            <div class="alert alert-secondary alert-rounded" role="alert">
+              3. 完成註冊
             </div>
           </div>
         </div>
-
       </div>
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-8">
-          <form class="needs-validation" novalidate>
-            <div class="form-group row">
-              <label for="inputName" class="col-sm-2 col-form-label">姓名</label>
-              <div class="col-sm-5">
-                <input type="text" class="form-control" name="name" id="name" placeholder="請輸入姓名" required>
-              </div>
-              <div class="col-sm-5">
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="gender" id="male" value="male" checked>
-                  <label class="form-check-label" for="inlineRadio1">先生</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="gender" id="female" value="female">
-                  <label class="form-check-label" for="inlineRadio2">小姐</label>
-                </div>
-              </div>
-            </div>
 
-            <div class="form-group row">
-              <label for="inputEmail" class="col-sm-2 col-form-label">電子郵件</label>
-              <div class="col-sm-10">
-                <input type="email" class="form-control" name="email" id="email" placeholder="請輸入電子郵件" required>
-                <span class="text-success">電子郵件為您的會員登入帳號</span>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8">
+        <form class="needs-validation" novalidate>
+          <div class="form-group row">
+            <label for="inputName" class="col-sm-2 col-form-label">姓名</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" name="name" id="name" placeholder="請輸入姓名" required>
+            </div>
+            <div class="col-sm-5">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="male" value="male" checked>
+                <label class="form-check-label" for="inlineRadio1">先生</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                <label class="form-check-label" for="inlineRadio2">小姐</label>
               </div>
             </div>
+          </div>
 
-            <div class="form-group row">
-              <label for="inputDatepicker" class="col-sm-2 col-form-label">生日</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" name="birthday" id="birthday" placeholder="請選取您的生日" required>
-              </div>
+          <div class="form-group row">
+            <label for="inputEmail" class="col-sm-2 col-form-label">電子郵件</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" name="email" id="email" placeholder="請輸入電子郵件" required>
+              <span class="text-success">電子郵件為您的會員登入帳號</span>
             </div>
+          </div>
 
-            <div class="form-group row">
-              <label for="inputPassword" class="col-sm-2 col-form-label">設定密碼</label>
-              <div class="col-sm-10">
-                <input type="password" class="form-control" name="password" id="password" placeholder="最少6個字元" minlength=6 required>
-              </div>
+          <div class="form-group row">
+            <label for="inputDatepicker" class="col-sm-2 col-form-label">生日</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="birthday" id="birthday" placeholder="請選取您的生日" required>
             </div>
+          </div>
 
-            <div class="form-group row">
-              <label for="inputConfirm" class="col-sm-2 col-form-label">密碼確認</label>
-              <div class="col-sm-10">
-                <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm" placeholder="請再輸入一次密碼" minlength=6
-                  required>
-              </div>
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">設定密碼</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" name="password" id="password" placeholder="最少6個字元" minlength=6 required>
             </div>
+          </div>
 
-            <div class="form-group row">
-              <label for="inputPhone" class="col-sm-2 col-form-label">手機號碼</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" name="phone" id="phone" placeholder="請輸入手機號碼" required>
-              </div>
+          <div class="form-group row">
+            <label for="inputConfirm" class="col-sm-2 col-form-label">密碼確認</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm" placeholder="請再輸入一次密碼" minlength=6
+                required>
             </div>
+          </div>
 
-            <div class="form-group row">
-              <label for="inputAddress" class="col-sm-2 col-form-label">聯絡地址</label>
-              <div class="col-sm-10">
-                <div role="tw-city-selector" data-bootstrap-style data-show-district></div>
-                <input type="text" class="form-control" name="address" id="address" placeholder="" required>
-              </div>
+          <div class="form-group row">
+            <label for="inputPhone" class="col-sm-2 col-form-label">手機號碼</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="phone" id="phone" placeholder="請輸入手機號碼" required>
             </div>
+          </div>
 
-            <div class="form-group row">
-              <div class="col-sm-2">同意條款</div>
-              <div class="col-sm-10">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" name="assent" id="assent" required>
-                  <label class="form-check-label" for="gridCheck1">
-                    我同意隱私權政策
-                    <a href="/privacy" target="_blank">
-                      <strong class="text-danger">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>閱讀隱私權保護政策
-                      </strong>
-                    </a>
-                  </label>
-                </div>
+          <div class="form-group row">
+            <label for="inputAddress" class="col-sm-2 col-form-label">聯絡地址</label>
+            <div class="col-sm-10">
+              <div role="tw-city-selector" data-bootstrap-style data-show-district></div>
+              <input type="text" class="form-control" name="address" id="address" placeholder="" required>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-sm-2">同意條款</div>
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="assent" id="assent" required>
+                <label class="form-check-label" for="gridCheck1">
+                  我同意隱私權政策
+                  <a href="/privacy" target="_blank">
+                    <strong class="text-danger">
+                      <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>閱讀隱私權保護政策
+                    </strong>
+                  </a>
+                </label>
               </div>
             </div>
-            <div class="form-group row justify-content-center">
-              <div class="col-sm-6">
-                <button type="submit" class="btn btn-primary btn-block">下一步</button>
-              </div>
+          </div>
+          <div class="form-group row justify-content-center">
+            <div class="col-sm-6">
+              <button type="submit" class="btn btn-primary btn-block">下一步</button>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-    crossorigin="anonymous"></script>
-  <script type="text/javascript" src="/javascripts/tw-city-selector.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="/javascripts/tw-city-selector.js"></script>
 
-  <script>
-    $(function () {
-      $("#birthday").datepicker({ dateFormat: 'yy/mm/dd', changeMonth: true, changeYear: true, yearRange: '1918:2018' });
-    });
-    new TwCitySelector();
+<script>
+  $(function () {
+    $("#birthday").datepicker({ dateFormat: 'yy/mm/dd', changeMonth: true, changeYear: true, yearRange: '1918:2018' });
+  });
+  new TwCitySelector();
 
-    (function () {
-      'use strict';
-      window.addEventListener('load', function () {
-        var forms = document.getElementsByClassName('needs-validation');
-        var validation = Array.prototype.filter.call(forms, function (form) {
-          form.addEventListener('submit', function (event) {
-            event.preventDefault();
-            if (form.checkValidity() === false) {
-              event.stopPropagation();
-            } else {
-              var patten_tw = new RegExp(/^(09)\d{8}$/);
-              if ($('#password').val() != $('#passwordConfirm').val()) {
-                swal("", "密碼輸入不一致，請重新輸入!", "error");
-                $('#password').val('');
-                $('#passwordConfirm').val('');
-                return;
-              } else if (!patten_tw.test($("#phone").val())) {
-                swal("", "手機號碼格式錯誤，請重新輸入!", "error");
-                $('#phone').val('');
-                return;
-              }
-
-              var newUser = {
-                'name': $('#name').val(),
-                'gender': $("input:radio[name ='gender']:checked").val(),
-                'email': $('#email').val(),
-                'password': $('#password').val(),
-                'birthday': $('#birthday').val(),
-                'phone': $('#phone').val(),
-                'county': $('#county').val(),
-                'district': $('#district').val(),
-                'address': $('#address').val()
-              };
-
-              $.ajax({
-                type: "POST",
-                url: "/user/signup",
-                data: newUser,
-                dataType: "json",
-                cache: false,
-                async: false,
-                success: function (res) {
-                  if (res.success === true) {
-                    //swal("", "註冊成功", "success");
-                    window.location.href = res.redirect;
-                  } else {
-                    swal("", res.message, "error");
-                  }
-                },
-                error: function () { }
-              });
+  (function () {
+    'use strict';
+    window.addEventListener('load', function () {
+      var forms = document.getElementsByClassName('needs-validation');
+      var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+          if (form.checkValidity() === false) {
+            event.stopPropagation();
+          } else {
+            var patten_tw = new RegExp(/^(09)\d{8}$/);
+            if ($('#password').val() != $('#passwordConfirm').val()) {
+              swal("", "密碼輸入不一致，請重新輸入!", "error");
+              $('#password').val('');
+              $('#passwordConfirm').val('');
+              return;
+            } else if (!patten_tw.test($("#phone").val())) {
+              swal("", "手機號碼格式錯誤，請重新輸入!", "error");
+              $('#phone').val('');
+              return;
             }
-            form.classList.add('was-validated');
-          }, false);
-        });
-      }, false);
-    })();
-  </script>
+
+            var newUser = {
+              'name': $('#name').val(),
+              'gender': $("input:radio[name ='gender']:checked").val(),
+              'email': $('#email').val(),
+              'password': $('#password').val(),
+              'birthday': $('#birthday').val(),
+              'phone': $('#phone').val(),
+              'county': $('#county').val(),
+              'district': $('#district').val(),
+              'address': $('#address').val()
+            };
+
+            $.ajax({
+              type: "POST",
+              url: "/user/signup",
+              data: newUser,
+              dataType: "json",
+              cache: false,
+              async: false,
+              success: function (res) {
+                if (res.success === true) {
+                  //swal("", "註冊成功", "success");
+                  window.location.href = res.redirect;
+                } else {
+                  swal("", res.message, "error");
+                }
+              },
+              error: function () { }
+            });
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+</script>

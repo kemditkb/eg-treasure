@@ -1,6 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
-var engine = require('ejs-locals');
+var expressLayouts = require('express-ejs-layouts');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
@@ -14,10 +14,9 @@ var adminRouter = require('./routes/admin');
 
 var app = express();
 
-// view engine setup
-app.engine('ejs', engine);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(expressLayouts);
 
 app.use(logger('dev'));
 app.use(express.json());

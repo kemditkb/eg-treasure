@@ -1,52 +1,51 @@
-<% layout('../layout/treasure') %>
-    <style>
-        .alert-rounded {
-            border-radius: 50px;
-        }
-    </style>
-    <section>
-        <div class="container my-5">
-            <h1>會員註冊</h1>
-            <hr>
-            <div class="row">
-                <div class="container py-4">
-                    <div class="form-row text-center">
-                        <div class="col-12 col-sm">
-                            <div class="alert alert-dark alert-rounded" role="alert">
-                                1. 填寫會員資料
-                            </div>
+<style>
+    .alert-rounded {
+        border-radius: 50px;
+    }
+</style>
+<section>
+    <div class="container my-5">
+        <h1>會員註冊</h1>
+        <hr>
+        <div class="row">
+            <div class="container py-4">
+                <div class="form-row text-center">
+                    <div class="col-12 col-sm">
+                        <div class="alert alert-dark alert-rounded" role="alert">
+                            1. 填寫會員資料
                         </div>
-                        <div class="col-12 col-sm">
-                            <div class="alert alert-dark alert-rounded" role="alert">
-                                2. 電子信箱與手機認證
-                            </div>
+                    </div>
+                    <div class="col-12 col-sm">
+                        <div class="alert alert-dark alert-rounded" role="alert">
+                            2. 電子信箱與手機認證
                         </div>
-                        <div class="col-12 col-sm">
-                            <div class="alert alert-primary alert-rounded" role="alert">
-                                3. 完成註冊
-                            </div>
+                    </div>
+                    <div class="col-12 col-sm">
+                        <div class="alert alert-primary alert-rounded" role="alert">
+                            3. 完成註冊
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-8 bg-light py-4 m-2 text-center">
-                    <p class="h4">帳號驗證成功</p>
-                    <p class="h2">歡迎加入世界古董國寶交換中心</p>
-                </div>
-            </div>
-            <div class="row justify-content-center pt-3">
-                <div class="col-sm-6">
-                    <button name="go" id="go" class="btn btn-primary btn-block">前往首頁</button>
-                </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 bg-light py-4 m-2 text-center">
+                <p class="h4">帳號驗證成功</p>
+                <p class="h2">歡迎加入世界古董國寶交換中心</p>
             </div>
         </div>
-    </section>
+        <div class="row justify-content-center pt-3">
+            <div class="col-sm-6">
+                <button name="go" id="go" class="btn btn-primary btn-block">前往首頁</button>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <script>
-        (function () {
-            $("#go").click(function () {
-                window.location.href = "/";
-            });
-        })();
-    </script>
+<script>
+    (function () {
+        $("#go").click(function () {
+            window.location.href = "/";
+        });
+    })();
+</script>

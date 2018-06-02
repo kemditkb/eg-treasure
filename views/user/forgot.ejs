@@ -1,76 +1,75 @@
-<% layout('../layout/basic') %>
-  <div class="container h-100">
-    <div class="row flex-column justify-content-center align-items-center h-100">
-      <div class="brand py-3">
-        <img src="/images/logo.png" width="180" height="40" alt="">
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title text-center mb-4 mt-1">重置密碼</h4>
-          <hr>
-          <p class="text-success text-center"></p>
-          <form class="needs-validation" novalidate>
-            <div class="form-group">
-              <div class="input-group">
-                <input name="email" id="email" class="form-control" placeholder="郵件地址" type="email" required>
-              </div>
+<div class="container h-100">
+  <div class="row flex-column justify-content-center align-items-center h-100">
+    <div class="brand py-3">
+      <img src="/images/logo.png" width="180" height="40" alt="">
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title text-center mb-4 mt-1">重置密碼</h4>
+        <hr>
+        <p class="text-success text-center"></p>
+        <form class="needs-validation" novalidate>
+          <div class="form-group">
+            <div class="input-group">
+              <input name="email" id="email" class="form-control" placeholder="郵件地址" type="email" required>
             </div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-block">送出</button>
-            </div>
-            <div class="d-flex justify-content-between">
-              <p class="text-center">
-                <a href="/user/signup" class="btn">註冊</a>
-              </p>
-              <p class="text-center">
-                <a href="/user/login" class="btn">登入</a>
-              </p>
-              <p class="text-center">
-                <a href="/" class="btn">返回首頁</a>
-              </p>
-            </div>
-          </form>
-        </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">送出</button>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p class="text-center">
+              <a href="/user/signup" class="btn">註冊</a>
+            </p>
+            <p class="text-center">
+              <a href="/user/login" class="btn">登入</a>
+            </p>
+            <p class="text-center">
+              <a href="/" class="btn">返回首頁</a>
+            </p>
+          </div>
+        </form>
       </div>
     </div>
   </div>
+</div>
 
-  <script>  
-    (function () {
-      'use strict';
-      window.addEventListener('load', function () {
-        var forms = document.getElementsByClassName('needs-validation');
-        var validation = Array.prototype.filter.call(forms, function (form) {
-          form.addEventListener('submit', function (event) {
-            event.preventDefault();
-            if (form.checkValidity() === false) {
-              event.stopPropagation();
-            } else {
-              var userEmail = {
-                'email': $('#email').val()
-              };
+<script>  
+  (function () {
+    'use strict';
+    window.addEventListener('load', function () {
+      var forms = document.getElementsByClassName('needs-validation');
+      var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+          if (form.checkValidity() === false) {
+            event.stopPropagation();
+          } else {
+            var userEmail = {
+              'email': $('#email').val()
+            };
 
-              $.ajax({
-                type: "POST",
-                url: "/user/forgot",
-                data: userEmail,
-                dataType: "json",
-                cache: false,
-                async: false,
-                success: function (res) {
-                  if (res.success === true) {
-                    swal("", res.message, "success");
-                  } else {
-                    swal("", res.message, "error");
-                  }
-                  $('#email').val('');
-                },
-                error: function () { }
-              });
-            }
-            form.classList.add('was-validated');
-          }, false);
-        });
-      }, false);
-    })();
-  </script>
+            $.ajax({
+              type: "POST",
+              url: "/user/forgot",
+              data: userEmail,
+              dataType: "json",
+              cache: false,
+              async: false,
+              success: function (res) {
+                if (res.success === true) {
+                  swal("", res.message, "success");
+                } else {
+                  swal("", res.message, "error");
+                }
+                $('#email').val('');
+              },
+              error: function () { }
+            });
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+</script>
