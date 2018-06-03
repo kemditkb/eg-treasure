@@ -88,7 +88,7 @@ router.get('/verify', function (req, res, next) {
     if(!user.emailVerified) {
       user.sendEmailVerification();
     }
-    res.render('user/verify', { layout: 'layout/treasure', auth: req.session.uid, email: user.email, phone: req.session.phone });
+    res.render('user/verify', { layout: 'layout/treasure', email: user.email, phone: req.session.phone });
   } else {
     res.redirect('/user/signup');
   }
