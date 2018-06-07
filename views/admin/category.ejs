@@ -2,7 +2,7 @@
   <div class="container pt-3">
     <div class="row">
       <div class="col-md-12 text-right my-2">
-        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#editModal">新增類別</button>
+        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addModal">新增類別</button>
       </div>
     </div>
 
@@ -50,38 +50,64 @@
   </div>
 </section>
 
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="addModalLabel">新增類別</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <form id="addCategory">
         <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="category-name" class="col-form-label">類別名稱:</label>
-              <input type="text" class="form-control" id="category-name">
-            </div>
-          </form>
+          <div class="form-group">
+            <label for="category-name" class="col-form-label">類別名稱:</label>
+            <input type="text" class="form-control" id="category-name">
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary">新增</button>
+          <button type="submit" class="btn btn-primary">新增</button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 
   <script>
-    $('#editModal').on('show.bs.modal', function (event) {
-      var btn = $(event.relatedTarget);
-      var title = btn.text();
+    // $('#addModal').on('show.bs.modal', function (event) {
+    //   var btn = $(event.relatedTarget);
+    //   var title = btn.text();
 
-      var modal = $(this);
-      modal.find('.modal-title').text(title);
-    })
+    //   var modal = $(this);
+    //   modal.find('.modal-title').text(title);
+    // })
+    $(function () {
+      $('#addCategory').on('submit', function (e) {
+        e.preventDefault();
+        //alert($('#category-name').val());
+        var newCategory = {
+          'name': $('#category-name').val()
+        };
+
+        $.ajax({
+          type: "POST",
+          url: "/admin/addCategory",
+          data: newCategory,
+          dataType: "json",
+          cache: false,
+          async: false,
+          success: function (res) {
+            // if (res.success === true) {
+            //   //swal("", "註冊成功", "success");
+            //   window.location.href = res.redirect;
+            // } else {
+            //   swal("", res.message, "error");
+            // }
+            $('#addModal').modal('toggle');
+          },
+          error: function () { }
+        });
+      });
+    });
   </script>
