@@ -85,7 +85,6 @@
     $(function () {
       $('#addCategory').on('submit', function (e) {
         e.preventDefault();
-        //alert($('#category-name').val());
         var newCategory = {
           'name': $('#category-name').val()
         };
@@ -98,13 +97,8 @@
           cache: false,
           async: false,
           success: function (res) {
-            // if (res.success === true) {
-            //   //swal("", "註冊成功", "success");
-            //   window.location.href = res.redirect;
-            // } else {
-            //   swal("", res.message, "error");
-            // }
             $('#addModal').modal('toggle');
+            $('#category-name').val('');
           },
           error: function () { }
         });

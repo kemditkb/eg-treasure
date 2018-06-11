@@ -54,12 +54,14 @@ router.post('/login', function (req, res, next) {
 });
 
 router.post('/addCategory', function (req, res, next) {
-  console.log(req.body.name);
   var name = req.body.name;
-  // fireDB.ref('category').set(name);
-  res.json({
-    success: true
-  });
+  var categoryRef = fireDB.ref('category').push();
+  categoryRef.set({ "name": name })
+    .then(function () {
+      res.json({
+        success: true
+      });
+    })
 });
 
 module.exports = router;
