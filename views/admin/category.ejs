@@ -15,36 +15,28 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>古董</td>
-          <td class="text-center">
-            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-              <button type="button" class="btn btn-outline-secondary">編輯</button>
-              <button type="button" class="btn btn-outline-secondary">刪除</button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>書畫</td>
-          <td class="text-center">
-            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-              <button type="button" class="btn btn-outline-secondary">編輯</button>
-              <button type="button" class="btn btn-outline-secondary">刪除</button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>國寶</td>
-          <td class="text-center">
-            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-              <button type="button" class="btn btn-outline-secondary">編輯</button>
-              <button type="button" class="btn btn-outline-secondary">刪除</button>
-            </div>
-          </td>
-        </tr>
+        <%
+          var i = 1;
+          for(item in category) { 
+        %>
+          <tr>
+            <th scope="row">
+              <%- i %>
+            </th>
+            <td>
+              <%- category[item].name %>
+            </td>
+            <td class="text-center">
+              <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-outline-secondary">編輯</button>
+                <button type="button" class="btn btn-outline-secondary">刪除</button>
+              </div>
+            </td>
+          </tr>
+        <%
+            i++;
+          } 
+        %>
       </tbody>
     </table>
   </div>

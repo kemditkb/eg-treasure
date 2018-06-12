@@ -14,7 +14,13 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/category', function (req, res, next) {
-  res.render('admin/category', { layout: 'layout/admin' });
+  fireDB.ref('category').once('value', function (snapshot) {
+    var data = snapshot.val();
+    res.render('admin/category', {
+      layout: 'layout/admin',
+      category: data
+    });
+  })
 });
 
 router.get('/product', function (req, res, next) {
