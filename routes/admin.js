@@ -68,7 +68,8 @@ router.post('/login', function (req, res, next) {
 });
 
 router.get('/logout', function (req, res, next) {
-  req.session.admin = false;
+  fireAuth.signOut();
+  req.session.destroy();
   res.render('admin/login', { layout: 'layout/basic' });
 });
 
