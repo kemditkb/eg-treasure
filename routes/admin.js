@@ -70,4 +70,26 @@ router.post('/addCategory', function (req, res, next) {
     })
 });
 
+router.post('/updateCategory', function (req, res, next) {
+  var id = req.body.id;
+  var name = req.body.name;
+  fireDB.ref('category/' + id).set({ "name": name })
+    .then(function () {
+      res.json({
+        success: true
+      });
+    })
+});
+
+router.post('/removeCategory', function (req, res, next) {
+  var id = req.body.id;
+  fireDB.ref('category').child(id).remove()
+    .then(function () {
+      console.log(id);
+      res.json({
+        success: true
+      });
+    })
+});
+
 module.exports = router;

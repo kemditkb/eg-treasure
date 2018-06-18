@@ -28,12 +28,13 @@
             </td>
             <td class="text-center">
               <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-outline-secondary">編輯</button>
-                <button type="button" class="btn btn-outline-secondary">刪除</button>
+                <button type="button" class="btn btn-outline-secondary edit" data-id="<%- item %>" data-name="<%- category[item].name %>"
+                  data-toggle="modal" data-target="#editModal">編輯</button>
+                <button type="button" class="btn btn-outline-secondary remove" data-id="<%- item %>">刪除</button>
               </div>
             </td>
           </tr>
-        <%
+          <%
             i++;
           } 
         %>
@@ -65,35 +66,118 @@
       </form>
     </div>
   </div>
+</div>
 
-  <script>
-    // $('#addModal').on('show.bs.modal', function (event) {
-    //   var btn = $(event.relatedTarget);
-    //   var title = btn.text();
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">編輯類別</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="editCategory">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="edit-name" class="col-form-label">類別名稱:</label>
+            <input type="text" class="form-control edit-name" id="edit-name">
+            <input type="hidden" class="edit-id" id="edit-id">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          <button type="submit" class="btn btn-primary">確定</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
-    //   var modal = $(this);
-    //   modal.find('.modal-title').text(title);
-    // })
-    $(function () {
-      $('#addCategory').on('submit', function (e) {
-        e.preventDefault();
-        var newCategory = {
-          'name': $('#category-name').val()
-        };
+<script>
+  $('#editModal').on('show.bs.modal', function (event) {
+    var btn = $(event.relatedTarget);
+    var id = btn.data('id');
+    var name = btn.data('name');
 
-        $.ajax({
-          type: "POST",
-          url: "/admin/addCategory",
-          data: newCategory,
-          dataType: "json",
-          cache: false,
-          async: false,
-          success: function (res) {
-            $('#addModal').modal('toggle');
-            $('#category-name').val('');
-          },
-          error: function () { }
+    var modal = $(this);
+    modal.find('.edit-id').val(id);
+    modal.find('.edit-name').val(name);
+  });
+
+  $(function () {
+    $('.remove').click(function () {
+      swal({
+        title: "確定要刪除該資料？",
+        text: "",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+        .then((willDelete) => {
+          if (willDelete) {
+            var removeCategory = {
+              'id': this.dataset.id
+            }
+
+            $.ajax({
+              type: "POST",
+              url: "/admin/removeCategory",
+              data: removeCategory,
+              dataType: "json",
+              cache: false,
+              async: false,
+              success: function (res) {
+                location.reload();
+              },
+              error: function () { }
+            });
+          }
         });
+    });
+
+    $('#addCategory').on('submit', function (e) {
+      e.preventDefault();
+      var newCategory = {
+        'name': $('#category-name').val()
+      };
+
+      $.ajax({
+        type: "POST",
+        url: "/admin/addCategory",
+        data: newCategory,
+        dataType: "json",
+        cache: false,
+        async: false,
+        success: function (res) {
+          $('#addModal').modal('toggle');
+          $('#category-name').val('');
+          location.reload();
+        },
+        error: function () { }
       });
     });
-  </script>
+
+    $('#editCategory').on('submit', function (e) {
+      e.preventDefault();
+      var updateCategory = {
+        'id': $('#edit-id').val(),
+        'name': $('#edit-name').val()
+      };
+
+      $.ajax({
+        type: "POST",
+        url: "/admin/updateCategory",
+        data: updateCategory,
+        dataType: "json",
+        cache: false,
+        async: false,
+        success: function (res) {
+          $('#editModal').modal('toggle');
+          location.reload();
+        },
+        error: function () { }
+      });
+    });
+  });
+</script>
