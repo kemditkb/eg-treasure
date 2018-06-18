@@ -14,17 +14,25 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/category', function (req, res, next) {
-  fireDB.ref('category').once('value', function (snapshot) {
-    var data = snapshot.val();
-    res.render('admin/category', {
-      layout: 'layout/admin',
-      category: data
-    });
-  })
+  if (req.session.admin) {
+    fireDB.ref('category').once('value', function (snapshot) {
+      var data = snapshot.val();
+      res.render('admin/category', {
+        layout: 'layout/admin',
+        category: data
+      });
+    })
+  } else {
+    res.redirect('/admin');
+  }
 });
 
 router.get('/product', function (req, res, next) {
-  res.render('admin/product', { layout: 'layout/admin' });
+  if (req.session.admin) {
+    res.render('admin/product', { layout: 'layout/admin' });
+  } else {
+    res.redirect('/admin');
+  }
 });
 
 router.post('/login', function (req, res, next) {
@@ -57,6 +65,11 @@ router.post('/login', function (req, res, next) {
         redirect: null
       });
     })
+});
+
+router.get('/logout', function (req, res, next) {
+  req.session.admin = false;
+  res.render('admin/login', { layout: 'layout/basic' });
 });
 
 router.post('/addCategory', function (req, res, next) {
