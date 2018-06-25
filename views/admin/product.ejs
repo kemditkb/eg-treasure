@@ -19,73 +19,97 @@
       </div>
       <form id="addProduct">
         <div class="modal-body">
-          <div class="form-group row">
-            <label for="pd-name" class="col-2 col-form-label">拍品名稱:</label>
-            <div class="col-10">
-              <input type="text" class="form-control" id="pd-name">
+          <div class="container">
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group row">
+                  <label for="pd-name" class="col-4 col-form-label">拍品名稱:</label>
+                  <div class="col-8">
+                    <input type="text" class="form-control" id="pd-name">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="pd-start-time" class="col-4 col-form-label">開始時間:</label>
+                  <div class="col-8">
+                    <input type="text" class="form-control" id="pd-start-time" data-toggle="datetimepicker" data-target="#pd-start-time">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="pd-end-time" class="col-4 col-form-label">結束時間:</label>
+                  <div class="col-8">
+                    <input type="text" class="form-control" id="pd-end-time" data-toggle="datetimepicker" data-target="#pd-end-time">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="pd-start-price" class="col-4 col-form-label">起標價格:</label>
+                  <div class="col-8">
+                    <input type="text" class="form-control" id="pd-start-price">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="pd-inc-price" class="col-4 col-form-label">出價增額:</label>
+                  <div class="col-8">
+                    <input type="text" class="form-control" id="pd-inc-price">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="pd-status" class="col-4 col-form-label">拍品狀況:</label>
+                  <div class="col-8">
+                    <input type="text" class="form-control" id="pd-status">
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group row">
+                  <label for="pd-pay-method" class="col-4 col-form-label">付款方式:</label>
+                  <div class="col-8">
+                    <input type="text" class="form-control" id="pd-pay-method">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="pd-delivery-method" class="col-4 col-form-label">取貨方式:</label>
+                  <div class="col-8">
+                    <input type="text" class="form-control" id="pd-delivery-method">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="pd-delivery-price" class="col-4 col-form-label">運費:</label>
+                  <div class="col-8">
+                    <input type="text" class="form-control" id="pd-delivery-price">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="pd-location" class="col-4 col-form-label">所在地:</label>
+                  <div class="col-8">
+                    <input type="text" class="form-control" id="pd-location">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="pd-id" class="col-4 col-form-label">拍品編號:</label>
+                  <div class="col-8">
+                    <input type="text" class="form-control" id="pd-id">
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="form-group row">
-            <label for="pd-start-time" class="col-2 col-form-label">開始時間:</label>
-            <div class="col-10">
-              <input type="text" class="form-control" id="pd-start-time" data-toggle="datetimepicker" data-target="#pd-start-time">
-            </div>
+
+          <div class="form-group">
+            <input id="pd-image-1" name="pd-image-1" type="file" accept="image/*">
           </div>
-          <div class="form-group row">
-            <label for="pd-end-time" class="col-2 col-form-label">結束時間:</label>
-            <div class="col-10">
-              <input type="text" class="form-control" id="pd-end-time" data-toggle="datetimepicker" data-target="#pd-end-time">
-            </div>
+          <div class="form-group">
+            <input id="pd-image-2" name="pd-image-2" type="file" accept="image/*">
           </div>
-          <div class="form-group row">
-            <label for="pd-start-price" class="col-2 col-form-label">起標價格:</label>
-            <div class="col-10">
-              <input type="text" class="form-control" id="pd-start-price">
-            </div>
+          <div class="form-group">
+            <input id="pd-image-3" name="pd-image-3" type="file" accept="image/*">
           </div>
-          <div class="form-group row">
-            <label for="pd-inc-price" class="col-2 col-form-label">出價增額:</label>
-            <div class="col-10">
-              <input type="text" class="form-control" id="pd-inc-price">
-            </div>
+          <div class="form-group">
+            <input id="pd-image-4" name="pd-image-4" type="file" accept="image/*">
           </div>
-          <div class="form-group row">
-            <label for="pd-status" class="col-2 col-form-label">拍品狀況:</label>
-            <div class="col-10">
-              <input type="text" class="form-control" id="pd-status">
-            </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">啟用</label>
           </div>
-          <div class="form-group row">
-            <label for="pd-pay-method" class="col-2 col-form-label">付款方式:</label>
-            <div class="col-10">
-              <input type="text" class="form-control" id="pd-pay-method">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="pd-delivery-method" class="col-2 col-form-label">取貨方式:</label>
-            <div class="col-10">
-              <input type="text" class="form-control" id="pd-delivery-method">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="pd-delivery-price" class="col-2 col-form-label">運費:</label>
-            <div class="col-10">
-              <input type="text" class="form-control" id="pd-delivery-price">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="pd-location" class="col-2 col-form-label">所在地:</label>
-            <div class="col-10">
-              <input type="text" class="form-control" id="pd-location">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="pd-id" class="col-2 col-form-label">拍品編號:</label>
-            <div class="col-10">
-              <input type="text" class="form-control" id="pd-id">
-            </div>
-          </div>
-          <input id="pd-image" name="pd-image" type="file" accept="image">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
@@ -124,8 +148,32 @@
   $(function () {
     $('#pd-start-time').datetimepicker();
     $('#pd-end-time').datetimepicker();
-    $("#pd-image").fileinput({
+    $("#pd-image-1").fileinput({
       theme: "fa",
+      showPreview: false,
+      showUpload: false,
+      dropZoneEnabled: false,
+      allowedFileExtensions: ["jpg", "png", "gif"]
+    });
+    $("#pd-image-2").fileinput({
+      theme: "fa",
+      showPreview: false,
+      showUpload: false,
+      dropZoneEnabled: false,
+      allowedFileExtensions: ["jpg", "png", "gif"]
+    });
+    $("#pd-image-3").fileinput({
+      theme: "fa",
+      showPreview: false,
+      showUpload: false,
+      dropZoneEnabled: false,
+      allowedFileExtensions: ["jpg", "png", "gif"]
+    });
+    $("#pd-image-4").fileinput({
+      theme: "fa",
+      showPreview: false,
+      showUpload: false,
+      dropZoneEnabled: false,
       allowedFileExtensions: ["jpg", "png", "gif"]
     });
 
